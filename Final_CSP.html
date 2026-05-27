@@ -1,6 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Qingdao Beauty</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>City of Serenity: San Francisco | Introduction</title>
+    <!-- Google Fonts & simple reset -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fbfaf8;
+            font-family: 'Inter', sans-serif;
+            color: #2c2b28;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* hero section with image overlay */
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            background: linear-gradient(105deg, #1e2b3c 0%, #10212e 100%);
+            border-radius: 0 0 48px 48px;
+            margin-bottom: 64px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            isolation: isolate;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+            z-index: 0;
+            filter: brightness(0.85) contrast(1.05);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+            padding: 60px 40px;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 214, 146, 0.95);
+            color: #2c2b28;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 40px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-tagline {
+            font-size: 1.35rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.92;
+            max-width: 600px;
+            border-left: 3px solid #ffda88;
+            padding-left: 20px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: rgba(255,255,245,0.12);
+            backdrop-filter: blur(8px);
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-weight: 500;
+        }
+
+        .stat span {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-right: 6px;
+        }
+
+        /* section headers */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.3px;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 56px;
+            height: 3px;
+            background: #d97747;
+            border-radius: 4px;
+        }
+
+        /* intro text grid */
+        .intro-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            margin-bottom: 80px;
+            align-items: flex-start;
+        }
+        .intro-text {
+            flex: 2;
+            min-width: 260px;
+        }
+        .intro-text p {
+            font-size: 1.12rem;
+            color: #3a3834;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .intro-highlight {
+            background: #fef3e4;
+            padding: 28px;
+            border-radius: 32px;
+            flex: 1.2;
+            border: 1px solid #f0e2d2;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
+        }
+        .intro-highlight h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #b45f2b;
+        }
+        .intro-highlight p {
+            margin-bottom: 20px;
+            font-size: 0.98rem;
+        }
+        .fact-list {
+            list-style: none;
+            margin-top: 16px;
+        }
+        .fact-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e2d4c8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        .fact-list li::before {
+            content: "🌉";
+            font-size: 1.2rem;
+        }
+
+        /* cards gallery (landmarks) */
+        .cards-section {
+            margin-bottom: 80px;
+        }
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+        }
+        .card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            flex: 1;
+            min-width: 260px;
+            max-width: 320px;
+            transition: all 0.25s ease;
+            box-shadow: 0 12px 26px -10px rgba(0,0,0,0.08);
+            border: 1px solid #ede6dd;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 32px -14px rgba(0,0,0,0.15);
+        }
+        .card-img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+        .card-content {
+            padding: 22px 20px 26px;
+        }
+        .card h3 {
+            font-size: 1.55rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 8px;
+        }
+        .card-loc {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #bc7f54;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .card p {
+            color: #4c4944;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* culture & food section */
+        .culture-wrap {
+            background: #f6f2ec;
+            border-radius: 48px;
+            padding: 48px 40px;
+            margin-bottom: 70px;
+        }
+        .two-col {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 44px;
+            margin-top: 20px;
+        }
+        .col {
+            flex: 1;
+            min-width: 240px;
+        }
+        .col h3 {
+            font-size: 1.65rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #754e2a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .col ul {
+            list-style: none;
+        }
+        .col li {
+            margin-bottom: 16px;
+            padding-left: 28px;
+            position: relative;
+            font-weight: 450;
+        }
+        .col li::before {
+            content: "✦";
+            position: absolute;
+            left: 4px;
+            color: #cc884a;
+            font-weight: bold;
+        }
+        .food-highlight {
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            margin-top: 24px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+        }
+        .food-highlight p {
+            font-style: italic;
+            font-weight: 500;
+            color: #2c3e3b;
+        }
+
+        /* travel tips banner */
+        .tips-banner {
+            background: linear-gradient(115deg, #2f4858, #1f3b43);
+            border-radius: 48px;
+            padding: 48px 44px;
+            color: white;
+            margin-bottom: 70px;
+        }
+        .tips-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tips-text {
+            flex: 2;
+        }
+        .tips-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            margin-bottom: 16px;
+        }
+        .tips-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .tip-item {
+            background: rgba(255,255,240,0.12);
+            backdrop-filter: blur(4px);
+            padding: 8px 18px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .btn-cta {
+            background: #ffcd94;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 48px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #2c2b28;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .btn-cta:hover {
+            background: #ffbe6e;
+            transform: scale(1.02);
+        }
+
+        /* footer */
+        .footer {
+            margin-top: 40px;
+            padding: 40px 0 50px;
+            border-top: 1px solid #e7dfd5;
+            text-align: center;
+            color: #726e67;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 760px) {
+            .container {
+                padding: 0 24px;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content {
+                padding: 40px 24px;
+            }
+            .culture-wrap {
+                padding: 32px 24px;
+            }
+            .tips-banner {
+                padding: 32px 28px;
+            }
+            .section-title {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Qingdao Beauty</h1>
-    <p>This is a sample webpage.</p>
+
+<main>
+    <!-- Hero section with background image of San Francisco iconic view (Golden Gate) -->
+    <div class="hero">
+        <img class="hero-bg" src="https://images.pexels.com/photos/208745/pexels-photo-208745.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Golden Gate Bridge and San Francisco skyline" loading="lazy">
+        <div class="container" style="width: 100%;">
+            <div class="hero-content">
+                <div class="hero-badge">✦ WELCOME TO THE BAY AREA ✦</div>
+                <h1>San Francisco<br>Where fog meets future.</h1>
+                <div class="hero-tagline">A city of iconic hills, creative spirit, and endless horizons — discover the soul of Northern California.</div>
+                <div class="hero-stats">
+                    <div class="stat"><span>🌉 1.7M+</span> residents</div>
+                    <div class="stat"><span>🏛️ 49+</span> square miles</div>
+                    <div class="stat"><span>🍣 3,800+</span> restaurants</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- intro + key facts section -->
+        <div class="intro-grid">
+            <div class="intro-text">
+                <span class="section-title">City by the Bay</span>
+                <p>San Francisco is a vibrant tapestry of diverse neighborhoods, Victorian architecture, and progressive thinking. From the Golden Gate’s rust-red towers to the bustling Ferry Building, the city blends natural beauty with urban energy. Known for tech innovation, arts, and the legendary 1960s counterculture, SF remains one of the most walkable and picturesque metropolises in the world.</p>
+                <p>With more than 200 hills, cable cars climbing steep inclines, and the cooling Pacific breeze, every corner reveals a new view. Whether you seek world-class museums, farm-to-table dining, or redwood escapes just across the bridge — San Francisco welcomes you with open arms.</p>
+            </div>
+            <div class="intro-highlight">
+                <h3>✨ Did you know?</h3>
+                <p>The famous fog has a name — "Karl the Fog" — and over 200,000 people follow its social media account! Also, the Golden Gate Bridge is painted in "International Orange" to enhance visibility through the mist.</p>
+                <ul class="fact-list">
+                    <li>🌁 Over 4 million visitors yearly</li>
+                    <li>🏞️ 220+ parks including Golden Gate Park</li>
+                    <li>🚃 Oldest cable car system (1873)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Landmarks gallery -->
+        <div class="cards-section">
+            <span class="section-title">Iconic Landmarks</span>
+            <div class="cards-grid">
+                <div class="card">
+                    <img class="card-img" src="https://images.pexels.com/photos/64271/golden-gate-bridge-san-francisco-bridge-california-64271.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Golden Gate Bridge" loading="lazy">
+                    <div class="card-content">
+                        <h3>Golden Gate Bridge</h3>
+                        <div class="card-loc">🌉 Presidio</div>
+                        <p>An engineering marvel connecting SF to Marin County. Walk or bike across for breathtaking views of the bay and Alcatraz.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="https://images.pexels.com/photos/1481427/pexels-photo-1481427.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Alcatraz Island" loading="lazy">
+                    <div class="card-content">
+                        <h3>Alcatraz Island</h3>
+                        <div class="card-loc">🏝️ Bay</div>
+                        <p>Once a notorious federal prison, "The Rock" now offers eerie audio tours and a glimpse into American history.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="https://images.pexels.com/photos/2710521/pexels-photo-2710521.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Painted Ladies" loading="lazy">
+                    <div class="card-content">
+                        <h3>Painted Ladies</h3>
+                        <div class="card-loc">🏡 Alamo Square</div>
+                        <p>Victorian row houses with downtown skyline backdrop — a classic postcard scene and "Full House" nostalgia.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="https://images.pexels.com/photos/586326/pexels-photo-586326.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fisherman's Wharf" loading="lazy">
+                    <div class="card-content">
+                        <h3>Fisherman's Wharf</h3>
+                        <div class="card-loc">🦞 Pier 39</div>
+                        <p>Sea lions, clam chowder in sourdough bowls, and lively street performances — the heart of SF's waterfront.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Culture + cuisine area -->
+        <div class="culture-wrap">
+            <span class="section-title">Vibrant Culture & Cuisine</span>
+            <div class="two-col">
+                <div class="col">
+                    <h3>🎭 Arts & Scenes</h3>
+                    <ul>
+                        <li>SFMOMA — modern art masterpieces</li>
+                        <li>LGBTQ+ legacy in The Castro</li>
+                        <li>Street murals in Mission District</li>
+                        <li>San Francisco Symphony & Ballet</li>
+                        <li>Annual Carnival & Pride Parade</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h3>🍜 Must-Taste Foods</h3>
+                    <ul>
+                        <li>Sourdough bread bowl chowder</li>
+                        <li>Mission-style burrito</li>
+                        <li>Fresh Dungeness crab</li>
+                        <li>Dim Sum in Chinatown</li>
+                        <li>Irish Coffee at Buena Vista</li>
+                    </ul>
+                    <div class="food-highlight">
+                        <p>⭐ Insider tip: Grab a "Dutch Crunch" sandwich from a local deli — it's a cult favorite sandwich bread unique to the Bay Area.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Travel tips + interactive element -->
+        <div class="tips-banner">
+            <div class="tips-flex">
+                <div class="tips-text">
+                    <h2>Planning your visit?</h2>
+                    <p>Best months: September–November (Indian summer) or spring for fewer crowds. Use the Muni & BART system to get around — and always dress in layers, the microclimates are real!</p>
+                    <div class="tips-list">
+                        <span class="tip-item">🌁 Layer up for fog</span>
+                        <span class="tip-item">🎫 Reserve Alcatraz early</span>
+                        <span class="tip-item">🚶 Walk the Golden Gate Bridge</span>
+                        <span class="tip-item">🚋 Ride the historic cable car</span>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-cta" id="surpriseBtn">🗺️ Discover hidden gem</button>
+                    <p id="surpriseMessage" style="margin-top: 16px; font-size: 0.9rem; font-weight: 400; max-width: 260px;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>✨ San Francisco — Always Golden. ✨<br>© 2025 City Introduction | A tribute to the Bay Area's timeless charm</p>
+            <p style="margin-top: 12px;">📸 Photo credits: Pexels & atmospheric captures | explore responsibly</p>
+        </div>
+    </footer>
+</main>
+
+<script>
+    (function() {
+        const surprises = [
+            "🏝️ Lands End Labyrinth: A hidden stone maze with stunning ocean views — near Sutro Baths.",
+            "🌿 The Wave Organ: A marble & concrete acoustic sculpture at Marina where waves make music.",
+            "📖 City Lights Bookstore: Beat generation landmark, open late and full of literary spirit.",
+            "🌸 Japanese Tea Garden: oldest public tea garden in the US, serene koi ponds & pagodas.",
+            "🎨 Clarion Alley: An explosion of murals telling powerful social justice stories in the Mission."
+        ];
+        
+        const btn = document.getElementById('surpriseBtn');
+        const msgBox = document.getElementById('surpriseMessage');
+        
+        if (btn) {
+            btn.addEventListener('click', () => {
+                const randomIndex = Math.floor(Math.random() * surprises.length);
+                const surpriseText = surprises[randomIndex];
+                msgBox.innerHTML = `🔍 ${surpriseText}<br><span style="font-size:0.8rem; opacity:0.9;">✨ local's pick ✨</span>`;
+                // optional little animation
+                msgBox.style.opacity = '0';
+                setTimeout(() => {
+                    msgBox.style.transition = 'opacity 0.2s';
+                    msgBox.style.opacity = '1';
+                }, 10);
+            });
+        }
+    })();
+</script>
+</body>
+</html>
