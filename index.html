@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>City of Serenity: San Francisco | Introduction</title>
+    <title>Qingdao · Sea, Spirit & Sustainability | Multi-page Guide</title>
     <!-- Google Fonts & simple reset -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,26 +21,56 @@
             scroll-behavior: smooth;
         }
 
-        /* container */
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 32px;
         }
 
-        /* hero section with image overlay */
+        /* navigation pills */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 32px auto 20px;
+            background: white;
+            border-radius: 80px;
+            padding: 8px 24px;
+            width: fit-content;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+            border: 1px solid #e9e0d5;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 40px;
+            color: #4c4a44;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            background: #f0e7dc;
+            color: #b25f2a;
+        }
+        .nav-links .active {
+            background: #2f4858;
+            color: white;
+        }
+
+        /* hero section */
         .hero {
             position: relative;
-            min-height: 80vh;
+            min-height: 70vh;
             background: linear-gradient(105deg, #1e2b3c 0%, #10212e 100%);
             border-radius: 0 0 48px 48px;
-            margin-bottom: 64px;
+            margin-bottom: 48px;
             overflow: hidden;
             display: flex;
             align-items: center;
             isolation: isolate;
         }
-
         .hero-bg {
             position: absolute;
             top: 0;
@@ -52,7 +82,6 @@
             z-index: 0;
             filter: brightness(0.85) contrast(1.05);
         }
-
         .hero-content {
             position: relative;
             z-index: 2;
@@ -61,7 +90,6 @@
             color: white;
             text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-
         .hero-badge {
             display: inline-block;
             background: rgba(255, 214, 146, 0.95);
@@ -73,20 +101,16 @@
             border-radius: 40px;
             margin-bottom: 24px;
             backdrop-filter: blur(2px);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
-
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4.2rem;
+            font-size: 3.8rem;
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 20px;
-            letter-spacing: -0.02em;
         }
-
         .hero-tagline {
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             font-weight: 400;
             margin-bottom: 30px;
             opacity: 0.92;
@@ -94,42 +118,182 @@
             border-left: 3px solid #ffda88;
             padding-left: 20px;
         }
-
         .hero-stats {
             display: flex;
             gap: 32px;
             margin-top: 28px;
             flex-wrap: wrap;
         }
-
         .stat {
             background: rgba(255,255,245,0.12);
             backdrop-filter: blur(8px);
-            padding: 10px 20px;
+            padding: 8px 18px;
             border-radius: 60px;
             font-weight: 500;
         }
+        .stat span { font-weight: 700; font-size: 1.2rem; margin-right: 6px; }
 
-        .stat span {
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin-right: 6px;
+        /* month picker section - redesigned interactive selector */
+        .month-picker-section {
+            background: linear-gradient(135deg, #ffffff 0%, #fcf8f2 100%);
+            border-radius: 48px;
+            padding: 40px 40px;
+            margin-bottom: 70px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+            border: 1px solid #eee3d6;
+        }
+        .month-picker-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .month-picker-header .section-title {
+            margin-bottom: 12px;
+        }
+        .month-picker-header .section-title:after {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+        }
+        .month-picker-header p {
+            color: #6b645a;
+            font-size: 0.95rem;
         }
 
-        /* section headers */
+        /* month grid - 12 clickable buttons */
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .month-btn {
+            background: #f4efe8;
+            border: none;
+            border-radius: 60px;
+            padding: 12px 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #4a4238;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+        }
+        .month-btn:hover {
+            background: #e2d4c4;
+            transform: translateY(-2px);
+        }
+        .month-btn.active {
+            background: #2f4858;
+            color: white;
+            box-shadow: 0 6px 12px rgba(47,72,88,0.25);
+        }
+
+        /* result card */
+        .month-result {
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            margin-top: 16px;
+            box-shadow: 0 12px 28px -12px rgba(0,0,0,0.12);
+            border: 1px solid #e8dfd3;
+        }
+        .result-inner {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .result-visual {
+            flex: 1;
+            min-width: 200px;
+            background: linear-gradient(145deg, #2f4858, #1f3746);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 24px;
+            text-align: center;
+            color: white;
+        }
+        .result-month-big {
+            font-size: 3.2rem;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .result-season-badge {
+            background: rgba(255,214,146,0.22);
+            backdrop-filter: blur(4px);
+            padding: 5px 16px;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .result-info {
+            flex: 2;
+            padding: 32px 36px;
+            background: white;
+        }
+        .result-info h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: #2c2b28;
+            margin-bottom: 12px;
+        }
+        .landmark-tag {
+            display: inline-block;
+            background: #f0e4d4;
+            color: #b45f2b;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 60px;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+        .result-info p {
+            font-size: 1.02rem;
+            line-height: 1.6;
+            color: #4c4944;
+            margin-bottom: 18px;
+        }
+        .result-extra {
+            background: #f9f5ef;
+            padding: 14px 20px;
+            border-radius: 28px;
+            border-left: 4px solid #dba468;
+            font-size: 0.9rem;
+        }
+
+        .green-tide-note {
+            background: #e5ede8;
+            border-radius: 24px;
+            padding: 18px 24px;
+            margin-top: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .green-tide-note span {
+            font-weight: 600;
+            color: #2f6b47;
+        }
+
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 40px;
+            margin-bottom: 36px;
             position: relative;
             display: inline-block;
-            letter-spacing: -0.3px;
         }
         .section-title:after {
             content: '';
             position: absolute;
-            bottom: -12px;
+            bottom: -10px;
             left: 0;
             width: 56px;
             height: 3px;
@@ -137,46 +301,24 @@
             border-radius: 4px;
         }
 
-        /* intro text grid */
         .intro-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 48px;
-            margin-bottom: 80px;
+            margin-bottom: 70px;
             align-items: flex-start;
         }
-        .intro-text {
-            flex: 2;
-            min-width: 260px;
-        }
-        .intro-text p {
-            font-size: 1.12rem;
-            color: #3a3834;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
+        .intro-text { flex: 2; min-width: 260px; }
+        .intro-text p { font-size: 1.1rem; color: #3a3834; margin-bottom: 20px; line-height: 1.6; }
         .intro-highlight {
             background: #fef3e4;
             padding: 28px;
             border-radius: 32px;
             flex: 1.2;
             border: 1px solid #f0e2d2;
-            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
         }
-        .intro-highlight h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #b45f2b;
-        }
-        .intro-highlight p {
-            margin-bottom: 20px;
-            font-size: 0.98rem;
-        }
-        .fact-list {
-            list-style: none;
-            margin-top: 16px;
-        }
+        .intro-highlight h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 16px; color: #b45f2b; }
+        .fact-list { list-style: none; margin-top: 16px; }
         .fact-list li {
             padding: 10px 0;
             border-bottom: 1px dashed #e2d4c8;
@@ -185,20 +327,14 @@
             gap: 10px;
             font-weight: 500;
         }
-        .fact-list li::before {
-            content: "🌉";
-            font-size: 1.2rem;
-        }
+        .fact-list li::before { content: "⛱️"; font-size: 1.2rem; }
 
-        /* cards gallery (landmarks) */
-        .cards-section {
-            margin-bottom: 80px;
-        }
         .cards-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 32px;
             justify-content: center;
+            margin-bottom: 70px;
         }
         .card {
             background: white;
@@ -207,45 +343,17 @@
             flex: 1;
             min-width: 260px;
             max-width: 320px;
-            transition: all 0.25s ease;
+            transition: 0.25s ease;
             box-shadow: 0 12px 26px -10px rgba(0,0,0,0.08);
             border: 1px solid #ede6dd;
         }
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 22px 32px -14px rgba(0,0,0,0.15);
-        }
-        .card-img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            display: block;
-        }
-        .card-content {
-            padding: 22px 20px 26px;
-        }
-        .card h3 {
-            font-size: 1.55rem;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 8px;
-        }
-        .card-loc {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #bc7f54;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-        .card p {
-            color: #4c4944;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
+        .card:hover { transform: translateY(-6px); }
+        .card-img { width: 100%; height: 190px; object-fit: cover; display: block; }
+        .card-content { padding: 22px 20px 26px; }
+        .card h3 { font-size: 1.55rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+        .card-loc { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #bc7f54; margin: 8px 0 10px; font-weight: 600; }
 
-        /* culture & food section */
-        .culture-wrap {
+        .culture-wrap, .algae-section {
             background: #f6f2ec;
             border-radius: 48px;
             padding: 48px 40px;
@@ -257,55 +365,59 @@
             gap: 44px;
             margin-top: 20px;
         }
-        .col {
-            flex: 1;
-            min-width: 240px;
-        }
-        .col h3 {
-            font-size: 1.65rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #754e2a;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .col ul {
-            list-style: none;
-        }
+        .col { flex: 1; min-width: 240px; }
+        .col h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 20px; color: #754e2a; display: flex; align-items: center; gap: 12px; }
+        .col ul { list-style: none; }
         .col li {
             margin-bottom: 16px;
             padding-left: 28px;
             position: relative;
             font-weight: 450;
         }
-        .col li::before {
-            content: "✦";
-            position: absolute;
-            left: 4px;
-            color: #cc884a;
-            font-weight: bold;
-        }
+        .col li::before { content: "✦"; position: absolute; left: 4px; color: #cc884a; font-weight: bold; }
         .food-highlight {
             background: white;
             border-radius: 28px;
             padding: 20px;
             margin-top: 24px;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.03);
         }
-        .food-highlight p {
-            font-style: italic;
-            font-weight: 500;
-            color: #2c3e3b;
-        }
-
-        /* travel tips banner */
         .tips-banner {
             background: linear-gradient(115deg, #2f4858, #1f3b43);
             border-radius: 48px;
             padding: 48px 44px;
             color: white;
             margin-bottom: 70px;
+        }
+        .btn-cta {
+            background: #ffcd94;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 48px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .footer {
+            margin-top: 40px;
+            padding: 40px 0 50px;
+            border-top: 1px solid #e7dfd5;
+            text-align: center;
+            color: #726e67;
+        }
+        @media (max-width: 760px) {
+            .container { padding: 0 24px; }
+            .hero h1 { font-size: 2.5rem; }
+            .month-picker-section { padding: 28px 20px; }
+            .result-info h3 { font-size: 1.5rem; }
+            .result-month-big { font-size: 2.4rem; }
+            .culture-wrap, .algae-section { padding: 32px 24px; }
+        }
+        .warning-note {
+            background: #fff1e0;
+            border-left: 6px solid #dd8844;
+            padding: 18px 22px;
+            border-radius: 28px;
+            margin: 32px 0;
         }
         .tips-flex {
             display: flex;
@@ -314,242 +426,311 @@
             justify-content: space-between;
             align-items: center;
         }
-        .tips-text {
-            flex: 2;
-        }
-        .tips-text h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.9rem;
-            margin-bottom: 16px;
-        }
-        .tips-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-top: 16px;
-        }
-        .tip-item {
-            background: rgba(255,255,240,0.12);
-            backdrop-filter: blur(4px);
-            padding: 8px 18px;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .btn-cta {
-            background: #ffcd94;
-            border: none;
-            padding: 14px 32px;
-            border-radius: 48px;
-            font-weight: 700;
-            font-size: 1rem;
-            color: #2c2b28;
-            cursor: pointer;
-            transition: 0.2s;
-            font-family: inherit;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .btn-cta:hover {
-            background: #ffbe6e;
-            transform: scale(1.02);
-        }
-
-        /* footer */
-        .footer {
-            margin-top: 40px;
-            padding: 40px 0 50px;
-            border-top: 1px solid #e7dfd5;
-            text-align: center;
-            color: #726e67;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 760px) {
-            .container {
-                padding: 0 24px;
-            }
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            .hero-content {
-                padding: 40px 24px;
-            }
-            .culture-wrap {
-                padding: 32px 24px;
-            }
-            .tips-banner {
-                padding: 32px 28px;
-            }
-            .section-title {
-                font-size: 1.9rem;
-            }
-        }
     </style>
 </head>
 <body>
 
 <main>
-    <!-- Hero section with background image of San Francisco iconic view (Golden Gate) -->
-    <div class="hero">
-        <img class="hero-bg" src="https://images.pexels.com/photos/208745/pexels-photo-208745.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Golden Gate Bridge and San Francisco skyline" loading="lazy">
-        <div class="container" style="width: 100%;">
-            <div class="hero-content">
-                <div class="hero-badge">✦ WELCOME TO THE BAY AREA ✦</div>
-                <h1>San Francisco<br>Where fog meets future.</h1>
-                <div class="hero-tagline">A city of iconic hills, creative spirit, and endless horizons — discover the soul of Northern California.</div>
-                <div class="hero-stats">
-                    <div class="stat"><span>🌉 1.7M+</span> residents</div>
-                    <div class="stat"><span>🏛️ 49+</span> square miles</div>
-                    <div class="stat"><span>🍣 3,800+</span> restaurants</div>
+    <div class="container">
+        <div class="nav-links" id="navBar">
+            <a href="#" data-page="home" class="active">🌊 Home · Qingdao</a>
+            <a href="#" data-page="culture">🍜 Culture & Cuisine</a>
+            <a href="#" data-page="algae">🌿 Green Tide</a>
+        </div>
+    </div>
+
+    <!-- =================== HOME PAGE =================== -->
+    <div id="homePage" class="page-content">
+        <div class="hero">
+            <img class="hero-bg" src="https://images.pexels.com/photos/1646313/pexels-photo-1646313.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Qingdao coastline" loading="lazy">
+            <div class="container" style="width:100%">
+                <div class="hero-content">
+                    <div class="hero-badge">✦ WELCOME TO QINGDAO ✦</div>
+                    <h1>Qingdao<br>Where sea meets heritage.</h1>
+                    <div class="hero-tagline">A coastal city famed for golden beaches, German-era architecture, and world-renowned Tsingtao beer.</div>
+                    <div class="hero-stats">
+                        <div class="stat"><span>🏖️ 9.5M+</span> residents</div>
+                        <div class="stat"><span>🏙️ 11,000+</span> km²</div>
+                        <div class="stat"><span>🍺 12,000+</span> eateries</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <span class="section-title">Coastal Charm</span>
+                    <p>Qingdao sits on the Yellow Sea with sandy beaches, rocky coves, and a historic waterfront lined with red-tiled German-style buildings. The city mixes maritime life, seaside promenades, and a growing cultural scene that celebrates both local tradition and international exchange.</p>
+                    <p>From the annual Beer Festival to hiking trails on Mount Laoshan, Qingdao offers fresh seafood, coastal vistas, and timeless architecture — all within easy reach of modern urban comforts.</p>
+                </div>
+                <div class="intro-highlight">
+                    <h3>✨ Did you know?</h3>
+                    <p>Qingdao is the birthplace of Tsingtao Brewery (1903). The city hosts one of Asia's largest beer festivals every August.</p>
+                    <ul class="fact-list">
+                        <li>🍺 Qingdao International Beer Festival</li>
+                        <li>🏖️ Zhanqiao & Golden Beach</li>
+                        <li>⛰️ Mount Laoshan — Taoist sacred site</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MONTH PICKER SECTION - USER FREELY CHOOSES MONTH -->
+            <div class="month-picker-section">
+                <div class="month-picker-header">
+                    <span class="section-title">🗓️ Find Your Perfect Month</span>
+                    <p>Click any month below to discover the best landmark to visit in Qingdao</p>
+                </div>
+
+                <!-- 12 month buttons grid -->
+                <div class="month-grid" id="monthGrid">
+                    <button class="month-btn" data-month="Jan">January</button>
+                    <button class="month-btn" data-month="Feb">February</button>
+                    <button class="month-btn" data-month="Mar">March</button>
+                    <button class="month-btn" data-month="Apr">April</button>
+                    <button class="month-btn" data-month="May">May</button>
+                    <button class="month-btn" data-month="Jun">June</button>
+                    <button class="month-btn" data-month="Jul">July</button>
+                    <button class="month-btn" data-month="Aug">August</button>
+                    <button class="month-btn" data-month="Sep">September</button>
+                    <button class="month-btn" data-month="Oct">October</button>
+                    <button class="month-btn" data-month="Nov">November</button>
+                    <button class="month-btn" data-month="Dec">December</button>
+                </div>
+
+                <!-- dynamic result area -->
+                <div id="monthResult" class="month-result">
+                    <!-- JS will fill content -->
+                </div>
+
+                <div class="green-tide-note">
+                    <span>🌿 Ulva prolifera alert:</span> 
+                    <span>June–July beaches may be affected. See <strong>"Green Tide" page</strong> for details.</span>
+                    <span>✅ Best algae-free months: April–May & Sept–Oct</span>
+                </div>
+            </div>
+
+            <div class="tips-banner">
+                <div class="tips-flex">
+                    <div class="tips-text">
+                        <h2>Planning your visit?</h2>
+                        <p>Best months: April–June and September–October. Use Qingdao Metro & bike-share to explore.</p>
+                        <div class="tips-list" style="display:flex; flex-wrap:wrap; gap:12px; margin-top:16px;">
+                            <span class="tip-item" style="background:rgba(255,255,240,0.12); padding:6px 16px; border-radius:40px;">🏖️ Visit beaches early</span>
+                            <span class="tip-item" style="background:rgba(255,255,240,0.12); padding:6px 16px; border-radius:40px;">🎫 Beer Festival in Aug</span>
+                            <span class="tip-item" style="background:rgba(255,255,240,0.12); padding:6px 16px; border-radius:40px;">🥾 Hike Laoshan</span>
+                        </div>
+                    </div>
+                    <button class="btn-cta" id="homeSurpriseBtn">🗺️ Hidden gem</button>
+                    <p id="homeSurpriseMsg" style="color:white; font-size:0.9rem; max-width:260px;"></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <!-- intro + key facts section -->
-        <div class="intro-grid">
-            <div class="intro-text">
-                <span class="section-title">City by the Bay</span>
-                <p>San Francisco is a vibrant tapestry of diverse neighborhoods, Victorian architecture, and progressive thinking. From the Golden Gate’s rust-red towers to the bustling Ferry Building, the city blends natural beauty with urban energy. Known for tech innovation, arts, and the legendary 1960s counterculture, SF remains one of the most walkable and picturesque metropolises in the world.</p>
-                <p>With more than 200 hills, cable cars climbing steep inclines, and the cooling Pacific breeze, every corner reveals a new view. Whether you seek world-class museums, farm-to-table dining, or redwood escapes just across the bridge — San Francisco welcomes you with open arms.</p>
+    <!-- =================== CULTURE PAGE =================== -->
+    <div id="culturePage" class="page-content" style="display:none;">
+        <div class="container" style="margin-top: 32px;">
+            <div class="culture-wrap" style="margin-top:0;">
+                <span class="section-title">Culinary & Cultural Soul</span>
+                <div class="two-col">
+                    <div class="col">
+                        <h3>🎭 Arts & Scenes</h3>
+                        <ul>
+                            <li>Badaguan Scenic Area — European villas & gardens</li>
+                            <li>Qingdao Film Festival & independent cinemas</li>
+                            <li>Traditional Laoshan Taoist culture & tea ceremonies</li>
+                            <li>Maritime museums & naval heritage</li>
+                            <li>Coastal public art — May Fourth Square nights</li>
+                            <li>Local opera and folk performances at Xiaogang</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h3>🍜 Must-Taste Foods</h3>
+                        <ul>
+                            <li>Spicy clams and fresh oysters</li>
+                            <li>Seafood jiaozi (dumplings)</li>
+                            <li>Grilled squid and scallops by Zhanqiao</li>
+                            <li>Lu-style seafood hotpot</li>
+                            <li>Qingdao-style braised abalone</li>
+                            <li>Local craft beer & Tsingtao draught</li>
+                        </ul>
+                        <div class="food-highlight">
+                            <p>⭐ Insider tip: Head to "Pichai Yuan" food street for authentic seafood pancakes and grilled razor clams. Pair with a cold Tsingtao straight from the brewery district.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 48px; background: #fff4e8; border-radius: 36px; padding: 28px;">
+                    <h3 style="font-size:1.6rem; margin-bottom:12px;">🍺 Qingdao beer culture</h3>
+                    <p style="font-size:1rem;">Beer is a lifestyle here. Locals carry plastic bags of fresh Tsingtao home. Every summer the International Beer Festival draws millions, turning the city into a global toast. The perfect fusion of German brewing heritage and Chinese coastal flavor.</p>
+                </div>
             </div>
-            <div class="intro-highlight">
-                <h3>✨ Did you know?</h3>
-                <p>The famous fog has a name — "Karl the Fog" — and over 200,000 people follow its social media account! Also, the Golden Gate Bridge is painted in "International Orange" to enhance visibility through the mist.</p>
-                <ul class="fact-list">
-                    <li>🌁 Over 4 million visitors yearly</li>
-                    <li>🏞️ 220+ parks including Golden Gate Park</li>
-                    <li>🚃 Oldest cable car system (1873)</li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- Landmarks gallery -->
-        <div class="cards-section">
-            <span class="section-title">Iconic Landmarks</span>
+            <span class="section-title">Flavors of the Yellow Sea</span>
             <div class="cards-grid">
-                <div class="card">
-                    <img class="card-img" src="https://images.pexels.com/photos/64271/golden-gate-bridge-san-francisco-bridge-california-64271.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Golden Gate Bridge" loading="lazy">
-                    <div class="card-content">
-                        <h3>Golden Gate Bridge</h3>
-                        <div class="card-loc">🌉 Presidio</div>
-                        <p>An engineering marvel connecting SF to Marin County. Walk or bike across for breathtaking views of the bay and Alcatraz.</p>
+                <div class="card"><img class="card-img" src="https://images.pexels.com/photos/1548505/pexels-photo-1548505.jpeg?auto=compress&cs=tinysrgb&w=600" alt="seafood platter"><div class="card-content"><h3>Shellfish Feast</h3><div class="card-loc">🦐 Local markets</div><p>Steamed clams, razor clams, and scallops with garlic sauce.</p></div></div>
+                <div class="card"><img class="card-img" src="https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=600" alt="dumplings"><div class="card-content"><h3>Seafood Dumplings</h3><div class="card-loc">🥟 Old Town</div><p>Hand-made jiaozi stuffed with shrimp and yellow croaker.</p></div></div>
+                <div class="card"><img class="card-img" src="https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?auto=compress&cs=tinysrgb&w=600" alt="beer museum"><div class="card-content"><h3>Beer & Peanuts</h3><div class="card-loc">🍻 Local tradition</div><p>Try "drunk clams" cooked with Tsingtao beer — signature dish.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================== GREEN TIDE PAGE =================== -->
+    <div id="algaePage" class="page-content" style="display:none;">
+        <div class="container" style="margin-top: 32px;">
+            <div class="algae-section" style="background: #e9f0ec;">
+                <span class="section-title">🌿 Ulva prolifera · The Green Tide Challenge</span>
+                <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: center;">
+                    <div style="flex: 1.2; min-width: 240px;">
+                        <p style="font-size:1.12rem; margin-bottom: 20px;">Since 2007, the Yellow Sea coast — especially Qingdao's shoreline — has faced seasonal outbreaks of <strong>Ulva prolifera</strong>, a fast-growing green algae. Every summer, massive floating mats of “green tide” appear, impacting tourism, marine ecosystems, and local fisheries.</p>
+                        <div class="warning-note">
+                            <strong>⚠️ Environmental impact:</strong> The algae blooms deplete oxygen, smother seagrass beds, and release unpleasant odors during decomposition. Cleanup costs Qingdao millions annually.
+                        </div>
+                        <h3 style="font-size:1.4rem; margin: 24px 0 12px;">🔬 Causes & Response</h3>
+                        <p>Excess nutrients from aquaculture and agriculture, rising sea temperatures, and specific current patterns contribute to the blooms. In response, Qingdao has deployed advanced barrier nets, early-warning satellite monitoring, and turned harvested algae into fertilizers and bio-energy. Locals and volunteers join hands during June–July cleanup campaigns.</p>
+                    </div>
+                    <div style="flex: 0.8; background: #d9e3da; border-radius: 36px; padding: 24px; text-align:center;">
+                        <span style="font-size: 3rem;">🌊🧪</span>
+                        <p style="font-weight:600; margin-top:8px;">Did you know?</p>
+                        <p>In peak years, over <strong>1 million tons</strong> of Ulva prolifera are removed from the Shandong coastline.</p>
+                        <hr style="margin:20px 0; border-color:#bdc7b8;">
+                        <p>✅ Qingdao now uses floating booms & ecological interception to reduce incoming algae from aquaculture rafts in the Subei Shoal.</p>
                     </div>
                 </div>
-                <div class="card">
-                    <img class="card-img" src="https://images.pexels.com/photos/1481427/pexels-photo-1481427.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Alcatraz Island" loading="lazy">
-                    <div class="card-content">
-                        <h3>Alcatraz Island</h3>
-                        <div class="card-loc">🏝️ Bay</div>
-                        <p>Once a notorious federal prison, "The Rock" now offers eerie audio tours and a glimpse into American history.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img" src="https://images.pexels.com/photos/2710521/pexels-photo-2710521.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Painted Ladies" loading="lazy">
-                    <div class="card-content">
-                        <h3>Painted Ladies</h3>
-                        <div class="card-loc">🏡 Alamo Square</div>
-                        <p>Victorian row houses with downtown skyline backdrop — a classic postcard scene and "Full House" nostalgia.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img" src="https://images.pexels.com/photos/586326/pexels-photo-586326.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fisherman's Wharf" loading="lazy">
-                    <div class="card-content">
-                        <h3>Fisherman's Wharf</h3>
-                        <div class="card-loc">🦞 Pier 39</div>
-                        <p>Sea lions, clam chowder in sourdough bowls, and lively street performances — the heart of SF's waterfront.</p>
+                <div style="margin-top: 48px; background: #ffffffcc; border-radius: 40px; padding: 28px;">
+                    <h3 style="font-size:1.5rem;">🤝 Hope & Innovation</h3>
+                    <p>Scientists are turning Ulva prolifera into organic fertilizer, animal feed, and even bio-plastics. The city also promotes sustainable aquaculture zoning to reduce nutrient runoff. Every summer, a “Blue Shield” operation mobilizes thousands of vessels for rapid removal, protecting swimming beaches and the reputation of Qingdao's coastal paradise.</p>
+                    <div style="margin-top: 24px; display: flex; gap: 16px; flex-wrap: wrap;">
+                        <span style="background:#2f6b47; color:white; padding:6px 18px; border-radius: 80px;">🌱 eco-fertilizer program</span>
+                        <span style="background:#2f6b47; color:white; padding:6px 18px; border-radius: 80px;">🛡️ barrier net system</span>
+                        <span style="background:#2f6b47; color:white; padding:6px 18px; border-radius: 80px;">📡 satellite monitoring</span>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Culture + cuisine area -->
-        <div class="culture-wrap">
-            <span class="section-title">Vibrant Culture & Cuisine</span>
-            <div class="two-col">
-                <div class="col">
-                    <h3>🎭 Arts & Scenes</h3>
-                    <ul>
-                        <li>SFMOMA — modern art masterpieces</li>
-                        <li>LGBTQ+ legacy in The Castro</li>
-                        <li>Street murals in Mission District</li>
-                        <li>San Francisco Symphony & Ballet</li>
-                        <li>Annual Carnival & Pride Parade</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h3>🍜 Must-Taste Foods</h3>
-                    <ul>
-                        <li>Sourdough bread bowl chowder</li>
-                        <li>Mission-style burrito</li>
-                        <li>Fresh Dungeness crab</li>
-                        <li>Dim Sum in Chinatown</li>
-                        <li>Irish Coffee at Buena Vista</li>
-                    </ul>
-                    <div class="food-highlight">
-                        <p>⭐ Insider tip: Grab a "Dutch Crunch" sandwich from a local deli — it's a cult favorite sandwich bread unique to the Bay Area.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Travel tips + interactive element -->
-        <div class="tips-banner">
-            <div class="tips-flex">
-                <div class="tips-text">
-                    <h2>Planning your visit?</h2>
-                    <p>Best months: September–November (Indian summer) or spring for fewer crowds. Use the Muni & BART system to get around — and always dress in layers, the microclimates are real!</p>
-                    <div class="tips-list">
-                        <span class="tip-item">🌁 Layer up for fog</span>
-                        <span class="tip-item">🎫 Reserve Alcatraz early</span>
-                        <span class="tip-item">🚶 Walk the Golden Gate Bridge</span>
-                        <span class="tip-item">🚋 Ride the historic cable car</span>
-                    </div>
-                </div>
-                <div>
-                    <button class="btn-cta" id="surpriseBtn">🗺️ Discover hidden gem</button>
-                    <p id="surpriseMessage" style="margin-top: 16px; font-size: 0.9rem; font-weight: 400; max-width: 260px;"></p>
-                </div>
+            <div class="cards-grid" style="margin-top: 20px;">
+                <div class="card"><div class="card-content"><h3>🌊 Volunteer clean-up</h3><p>Join local beach sweeps (June–August) to help fight the green tide and protect Qingdao's marine life.</p></div></div>
+                <div class="card"><div class="card-content"><h3>🧪 Science collaboration</h3><p>Qingdao's Marine Research Institute leads algal bloom forecasting models for coastal cities worldwide.</p></div></div>
+                <div class="card"><div class="card-content"><h3>🌾 From algae to economy</h3><p>Startups now convert harvested Ulva into organic snacks for animals and bioplastics. Circular economy in action!</p></div></div>
             </div>
         </div>
     </div>
 
     <footer class="footer">
         <div class="container">
-            <p>✨ San Francisco — Always Golden. ✨<br>© 2025 City Introduction | A tribute to the Bay Area's timeless charm</p>
-            <p style="margin-top: 12px;">📸 Photo credits: Pexels & atmospheric captures | explore responsibly</p>
+            <p>✨ Qingdao — Sea & Brew. Sustainability & Spirit. ✨<br>© 2026 City Introduction | Deep dive into coastal heritage, cuisine & environmental awareness</p>
         </div>
     </footer>
 </main>
 
 <script>
-    (function() {
-        const surprises = [
-            "🏝️ Lands End Labyrinth: A hidden stone maze with stunning ocean views — near Sutro Baths.",
-            "🌿 The Wave Organ: A marble & concrete acoustic sculpture at Marina where waves make music.",
-            "📖 City Lights Bookstore: Beat generation landmark, open late and full of literary spirit.",
-            "🌸 Japanese Tea Garden: oldest public tea garden in the US, serene koi ponds & pagodas.",
-            "🎨 Clarion Alley: An explosion of murals telling powerful social justice stories in the Mission."
-        ];
+    // ---------- PAGE SWITCHING ----------
+    const homeDiv = document.getElementById('homePage');
+    const cultureDiv = document.getElementById('culturePage');
+    const algaeDiv = document.getElementById('algaePage');
+    const navLinks = document.querySelectorAll('[data-page]');
+    
+    function showPage(pageId) {
+        homeDiv.style.display = 'none';
+        cultureDiv.style.display = 'none';
+        algaeDiv.style.display = 'none';
+        if (pageId === 'home') homeDiv.style.display = 'block';
+        if (pageId === 'culture') cultureDiv.style.display = 'block';
+        if (pageId === 'algae') algaeDiv.style.display = 'block';
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('data-page');
+            link.classList.toggle('active', linkPage === pageId);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage(link.getAttribute('data-page'));
+        });
+    });
+
+    // ---------- MONTH PICKER DATA (User freely choose month) ----------
+    const monthData = {
+        Jan: { month: "January", season: "❄️ Winter", title: "The Governor’s Hall", desc: "Indoor historical tour with beautiful period furniture, heating, and very few crowds. Dive into German colonial history.", extra: "Combined ticket with nearby museums. Warm and cozy winter escape." },
+        Feb: { month: "February", season: "❄️ Winter", title: "Coastal Boardwalk near Xiaoyudong Park", desc: "Winter storms create dramatic waves crashing against the rocks – excellent for moody photography.", extra: "Wrap up warm, bring a telephoto lens. Best after a storm." },
+        Mar: { month: "March", season: "🌸 Spring", title: "Badaguan Scenic Area", desc: "European-style villas surrounded by early magnolia and cherry blossoms. Very quiet and atmospheric.", extra: "No crowds, pleasant 12°C, ideal for romantic walks." },
+        Apr: { month: "April", season: "🌸 Spring", title: "Zhongshan Park", desc: "Famous cherry blossom avenue – one of China’s best spots for sakura viewing. A pink wonderland.", extra: "Peak bloom mid-April; arrive early to avoid crowds." },
+        May: { month: "May", season: "🌸 Spring", title: "Little Qingdao Island", desc: "Pleasant temperatures, few tourists, and panoramic views of the old town lighthouse. Sea breeze and serenity.", extra: "Great for sunset & coastal walks. Perfect before summer heat." },
+        Jun: { month: "June", season: "☀️ Summer", title: "Qingdao Beer Museum", desc: "Indoor escape from humidity; learn brewing history and enjoy fresh Tsingtao tastings. Perfect for beer lovers.", extra: "⚠️ Green tide starts on beaches – stay inland or visit pier views." },
+        Jul: { month: "July", season: "☀️ Summer", title: "Mount Laoshan (Yangkou)", desc: "Cool mountain trails, sea-view hiking paths, and Taoist temples – much cooler than the city. Recharge in nature.", extra: "Take the cable car for stunning coastal panoramas. Avoid midday heat." },
+        Aug: { month: "August", season: "☀️ Summer", title: "May Fourth Square + Olympic Sailing Centre", desc: "Stunning evening light shows plus the Qingdao International Beer Festival. Vibrant night atmosphere.", extra: "Beer Festival dates: early Aug – book tickets ahead. Night lights start at 7:30pm." },
+        Sep: { month: "September", season: "🍂 Autumn", title: "Zhanqiao Pier", desc: "Comfortable weather for sunset walks; the red pavilion against the blue sea is postcard-perfect. Iconic view.", extra: "No algae, golden light around 5 PM. Best month for photography." },
+        Oct: { month: "October", season: "🍂 Autumn", title: "Mount Laoshan (Jufeng Peak)", desc: "Autumn foliage plus clear views of the Yellow Sea – ideal for photography and hiking. Crisp air and vivid colors.", extra: "Best month for sunrise hiking. Bring layers." },
+        Nov: { month: "November", season: "❄️ Winter", title: "Christian Church (Guangdong Road)", desc: "German Romanesque architecture glows beautifully under the low winter sun. Warm light inside and peaceful atmosphere.", extra: "Less tourist traffic, cozy cafes nearby. Perfect for architecture lovers." },
+        Dec: { month: "December", season: "❄️ Winter", title: "Tsingtao Brewery Direct Sales Shop", desc: "Enjoy rich, dark beer varieties (seasonal stout) in a cozy indoor setting. Perfect for beer connoisseurs.", extra: "Pair with roasted seafood. Try the limited winter edition." }
+    };
+
+    let activeMonth = "Sep"; // default september (best season)
+
+    function updateMonthResult(monthKey) {
+        const data = monthData[monthKey];
+        if (!data) return;
+        const resultDiv = document.getElementById('monthResult');
+        resultDiv.innerHTML = `
+            <div class="result-inner">
+                <div class="result-visual">
+                    <div class="result-month-big">${data.month}</div>
+                    <div class="result-season-badge">${data.season}</div>
+                </div>
+                <div class="result-info">
+                    <div class="landmark-tag">🌟 RECOMMENDED LANDMARK</div>
+                    <h3>${data.title}</h3>
+                    <p>${data.desc}</p>
+                    <div class="result-extra">
+                        💡 ${data.extra}
+                    </div>
+                </div>
+            </div>
+        `;
         
-        const btn = document.getElementById('surpriseBtn');
-        const msgBox = document.getElementById('surpriseMessage');
-        
-        if (btn) {
-            btn.addEventListener('click', () => {
-                const randomIndex = Math.floor(Math.random() * surprises.length);
-                const surpriseText = surprises[randomIndex];
-                msgBox.innerHTML = `🔍 ${surpriseText}<br><span style="font-size:0.8rem; opacity:0.9;">✨ local's pick ✨</span>`;
-                // optional little animation
-                msgBox.style.opacity = '0';
-                setTimeout(() => {
-                    msgBox.style.transition = 'opacity 0.2s';
-                    msgBox.style.opacity = '1';
-                }, 10);
-            });
-        }
-    })();
+        // update active button style
+        document.querySelectorAll('.month-btn').forEach(btn => {
+            const btnMonth = btn.getAttribute('data-month');
+            if (btnMonth === monthKey) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+
+    // attach click events to month buttons
+    const monthBtns = document.querySelectorAll('.month-btn');
+    monthBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const monthKey = btn.getAttribute('data-month');
+            activeMonth = monthKey;
+            updateMonthResult(monthKey);
+        });
+    });
+
+    // initialize with default month (September)
+    updateMonthResult('Sep');
+
+    // surprise hidden gem button
+    const homeBtn = document.getElementById('homeSurpriseBtn');
+    const homeMsg = document.getElementById('homeSurpriseMsg');
+    const homeSurprises = [
+        "🏝️ Xiaomaidao Park: A quiet coastal cliff with stunning views and less tourist traffic.",
+        "🍻 Tsingtao Beer Street (Dengzhou Rd): Try the fresh 'draft in a bag' experience.",
+        "🌿 Laoshan Green Tea Village: sip organic tea overlooking terraced fields near the mountain.",
+        "🎨 Badaguan hidden courtyards: Explore German-era gardens without the crowds.",
+        "📚 The old Qingdao Post Office: A hidden museum with vintage stamps and sea views."
+    ];
+    if(homeBtn){
+        homeBtn.addEventListener('click', () => {
+            const rand = Math.floor(Math.random() * homeSurprises.length);
+            homeMsg.innerHTML = `🔍 ${homeSurprises[rand]}<br><span style="font-size:0.75rem;">✨ local’s whisper ✨</span>`;
+            homeMsg.style.opacity = '0';
+            setTimeout(() => { homeMsg.style.transition = 'opacity 0.2s'; homeMsg.style.opacity = '1'; }, 20);
+        });
+    }
 </script>
 </body>
 </html>
